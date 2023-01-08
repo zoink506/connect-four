@@ -12,5 +12,19 @@ class Game
     @computer = Computer.new
   end
 
-  
+  def play
+    round # Check winning condition
+  end
+
+  private
+  def round
+    # Display board
+    # Get player input
+    # Verify input
+    # Act on input
+
+    @board.print_board
+    input = get_player_input(@board.board)
+    
+  end
 end

@@ -15,4 +15,8 @@ describe Game do
       Game.new
     end
   end
+
+  describe "#play" do
+
+  end
 end
