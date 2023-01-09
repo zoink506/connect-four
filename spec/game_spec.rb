@@ -5,6 +5,7 @@ require_relative '../lib/Computer.rb'
 describe Game do
   describe "#initialize" do
     subject(:game) { described_class.new }
+    
     it "Creates new Board object" do
       expect(Board).to receive(:new)
       Game.new

@@ -24,7 +24,7 @@ class Game
     # Act on input
 
     @board.print_board
-    input = get_player_input(@board.board)
+    p input = get_player_input(@board, "Choose a column to drop your color (or type 'exit' or 'save')")
     
   end
 end

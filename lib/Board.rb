@@ -1,6 +1,10 @@
 class Board
-  def initialize
-    @board = create_board
+  def initialize(preset_board = nil)
+    if preset_board.nil?
+      @board = create_board
+    else
+      @board = preset_board
+    end
   end
 
   def board
@@ -9,6 +13,20 @@ class Board
 
   def find_winner
     true
+  end
+
+  def place_cell(column)
+
+  end
+
+  def check_column(column)
+    # Returns true if column has an empty space available
+    # Returns false if column is completely filled
+    if @board[0][column-1].nil?
+      return true
+    else
+      return false
+    end
   end
 
   def print_board
