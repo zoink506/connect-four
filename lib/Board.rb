@@ -1,3 +1,5 @@
+require_relative './Cell.rb'
+
 class Board
   def initialize(preset_board = nil)
     if preset_board.nil?
@@ -11,12 +13,21 @@ class Board
     @board
   end
 
-  def find_winner
-    true
+  def check_winner
+    false
   end
 
-  def place_cell(column)
+  def place_cell(column, color)
+    column = column.to_i
+    @board.reverse.each do |row|
+      cell = row[column-1]
+      
+      if cell.nil?
+        row[column-1] = Cell.new(color)
+        break
+      end
 
+    end
   end
 
   def check_column(column)
