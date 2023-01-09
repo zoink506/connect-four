@@ -14,11 +14,13 @@ class Game
   end
 
   def play
-    10.times do
+    loop do
       break if @board.check_winner
       new_round = round
       break if new_round == 'exit'
     end
+    @board.print_board
+    puts "GAME OVER"
   end
 
   private
