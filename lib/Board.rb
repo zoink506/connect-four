@@ -1,4 +1,5 @@
 require_relative './Cell.rb'
+require 'colorize'
 
 class Board
   def initialize(preset_board = nil)
@@ -193,7 +194,7 @@ class Board
         if cell.nil?
           print "   |"
         else
-          print " #{cell.symbol} |"
+          print " " + cell.symbol.send(cell.value) + " |"
         end
       end
       print "\n"
