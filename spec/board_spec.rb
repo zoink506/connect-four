@@ -132,7 +132,9 @@ describe Board do
           [nil, Cell.new(:yellow), nil, nil, nil, nil, nil]
         ]) }
 
-        it "returns :yellow when 4 yellow coins are on a right facing diagonal"
+        it "returns :yellow when 4 yellow coins are on a right facing diagonal" do
+          expect(board.check_winner).to eq(:yellow)
+        end
       end
     end
   end

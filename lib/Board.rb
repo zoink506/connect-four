@@ -21,18 +21,68 @@ class Board
     # check diagonals for 4 in a row
 
     rows_clear = check_rows
-    columns_clear = check_columns
-    diagonal_left = check_diagonal_left
-
-
     return rows_clear if !rows_clear.nil?
+
+    columns_clear = check_columns
     return columns_clear if !columns_clear.nil?
 
+    diagonals_clear = check_diagonals
+    p diagonals_clear
 
+    #nil
   end
 
-  def check_diagonal_left
-    
+  def check_diagonals
+    @board.each_with_index do |row, row_index|
+      row.each_with_index do |cell, column_index|
+        if !cell.nil?
+          # Check four direction: top_left, top_right, bottom_left, bottom_right
+
+          top_left = []
+          top_right = []
+          bottom_left = []
+          bottom_right = []
+
+          4.times do |i|
+            # if statements check if there is at least 4 cells between edge of array and current cell to avoid NoMethodErrors on NilClass
+            if row_index - 3 >= 0 && column_index - 3 >= 0
+              top_left << @board[row_index-i][column_index-i]
+            end
+
+            if row_index - 3 >= 0 && column_index + 3 < row.length
+              top_right << @board[row_index-i][column_index+i]
+            end
+
+            if row_index + 3 < @board.length && column_index - 3 >= 0
+              bottom_left << @board[row_index+i][column_index-i]
+            end
+
+            if row_index + 3 < @board.length && column_index + 3 < row.length
+              bottom_right << @board[row_index+i][column_index+i]  
+            end
+          end
+
+
+          p "top_left: #{top_left}" if !top_left.empty?
+          p "top_right: #{top_right}" if !top_right.empty?
+          p "bottom_left: #{bottom_left}" if !bottom_left.empty?
+          p "bottom_right: #{bottom_right}" if !bottom_right.empty?
+
+          top_left_win = check_row(top_left)
+          top_right_win = check_row(top_right)
+          bottom_left_win = check_row(bottom_left)
+          bottom_right_win = check_row(bottom_right)
+
+          return top_left_win if !top_left_win.nil?
+          return top_right_win if !top_right_win.nil?
+          return bottom_left_win if !bottom_left_win.nil?
+          return bottom_right_win if !bottom_right_win.nil?
+
+        end
+      end
+    end
+
+    nil
   end
 
   def check_rows
