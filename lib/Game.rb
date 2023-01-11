@@ -15,8 +15,8 @@ class Game
   
   def play 
     loop do
-      round
-      break if !@board.find_winner.nil?
+      new_round = round
+      break if !@board.find_winner.nil? || new_round == 'exit'
     end
   end
 
@@ -29,8 +29,10 @@ class Game
     player_input = get_player_input(@board, "Enter a column to place a coin (or type 'exit' or 'save')")
     if player_input == 'exit'
       # exit game
+      return player_input
     elsif player_input == 'save'
       # save game
+      return player_input
     else
       # place cell
       placed_cell = @board.place_coin(player_input, @turn)

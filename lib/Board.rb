@@ -64,7 +64,37 @@ class Board
       return 2 if row[1]['4'] > 0
     end
 
+    columns_checked = check_columns
+    columns_checked.each do |column|
+      return 1 if column[0]['4'] > 0
+      return 2 if column[1]['4'] > 0
+    end
+
+    diagonals_checked = check_diagonals
+
     nil
+  end
+
+  def check_diagonals
+    
+  end
+
+  def check_columns
+    columns = []
+
+    column = 0
+    while column < @board[0].length
+      column_arr = []
+      @board.each_with_index do |row|
+        column_arr << row[column]
+      end
+
+      columns << check_row(column_arr)
+      #p column_arr
+      column += 1
+    end
+
+    columns
   end
 
   def check_rows
