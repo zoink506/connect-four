@@ -14,7 +14,7 @@ module Input
     if input.to_i <= max && input.to_i >= min
       # Check if the board has an empty cell to place a circle
 
-      p board.check_column(input.to_i)
+      #p board.check_column(input.to_i)
       return board.check_column(input.to_i)
 
     elsif other.include?(input)

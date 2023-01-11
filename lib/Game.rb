@@ -10,44 +10,45 @@ class Game
   def initialize
     @board = Board.new
     @computer = Computer.new
-    @turn = :red
+    @turn = 1
   end
-
-  def play
-    loop do
-      break if @board.check_winner
-      new_round = round
-      break if new_round == 'exit'
-    end
-    @board.print_board
-    puts "GAME OVER"
+  
+  def play 
+    round
+    round
+    round
+    round
+    round
+    round
+    round
+    @board.find_winner
   end
 
   private
   def round
-    # Display board .
-    # Get player input .
-    # Verify input .
-    # Act on input ...
-
+    # get user input
+    # verify user input
+    # place coin in correct location
     @board.print_board
-    p input = get_player_input(@board, "Choose a column to drop your color (or type 'exit' or 'save')")
-
-    if input == 'save'
-      # save game
-    elsif input == 'exit'
+    player_input = get_player_input(@board, "Enter a column to place a coin (or type 'exit' or 'save')")
+    if player_input == 'exit'
       # exit game
-      return 'exit'
+    elsif player_input == 'save'
+      # save game
     else
-      # place the circle in the correct position
-      @board.place_cell(input, @turn)
-      
-      if @turn == :red
-        @turn = :yellow
-      elsif @turn == :yellow
-        @turn = :red
+      # place cell
+      placed_cell = @board.place_coin(player_input, @turn)
+      p placed_cell
+
+      if @turn == 1
+        @turn = 2
+      elsif @turn == 2
+        @turn = 1
       end
-    end
+
+      @board.find_winner
+    end 
 
   end
+
 end
