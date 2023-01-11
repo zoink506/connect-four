@@ -70,13 +70,52 @@ class Board
       return 2 if column[1]['4'] > 0
     end
 
-    diagonals_checked = check_diagonals
+    diagonals_checked_left = check_diagonals(:left)
+    diagonals_checked_right = check_diagonals(:right)
+    #puts "\n\n"
+    #diagonals_checked_left.each { |thing| p thing }
+    #puts "\n\n"
+    #diagonals_checked_right.each { |thing| p thing }
+
+    diagonals_checked_right.each { |hash| diagonals_checked_left << hash }
+    diagonals_checked_left.each do |diagonal|
+      return 1 if diagonal[0]['4'] > 0
+      return 2 if diagonal[1]['4'] > 0
+    end
 
     nil
   end
 
-  def check_diagonals
-    
+  def check_diagonals(dir)
+    padding = @board.length - 1
+    padded_matrix = []
+  
+    @board.each do |row|
+      inverse_padding = @board.length - padding
+
+      if dir == :left
+        padded_matrix << ([nil] * inverse_padding) + row + ([nil] * padding)
+      elsif dir == :right
+        padded_matrix << ([nil] * padding) + row + ([nil] * inverse_padding)
+      end
+
+      #puts "padding: #{padding}"
+      #puts "inverse_padding: #{inverse_padding}"
+      #padded_matrix.each { |row| p row }
+      padding -= 1    
+      #puts "\n"
+    end
+  
+    #padded_matrix.transpose.each { |row| p row }
+    #puts "\n\n"
+    diagonals = padded_matrix.transpose.map(&:compact)
+    diagonals_checked = []
+
+    diagonals.each do |diagonal|
+      diagonals_checked << check_row(diagonal)
+    end
+
+    diagonals_checked
   end
 
   def check_columns

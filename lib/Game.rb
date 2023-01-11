@@ -18,6 +18,7 @@ class Game
       new_round = round
       break if !@board.find_winner.nil? || new_round == 'exit'
     end
+    @board.print_board
   end
 
   private
