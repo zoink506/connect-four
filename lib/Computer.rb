@@ -14,9 +14,9 @@ class Computer
     #   2-6: 1.0x
     #   1-7: 0.9x
 
-    scores = board_evaluation(board)
-    player_score = scores[0]
-    computer_score = scores[1]
+    #scores = board_evaluation(board)
+    #player_score = scores[0]
+    #computer_score = scores[1]
 
     all_scores = []
     (1..7).each do |i|
@@ -122,13 +122,13 @@ class Computer
     #puts "  total_score: #{total_score_player}"
     #puts"\n"
 
-    puts "\n"
-    puts "computer"
-    puts "  two in a row: #{two_in_a_row_computer}"
-    puts "  three in a row: #{three_in_a_row_computer}"
-    puts "  four in a row: #{four_in_a_row_computer}"
+    #puts "\n"
+    #puts "computer"
+    #puts "  two in a row: #{two_in_a_row_computer}"
+    #puts "  three in a row: #{three_in_a_row_computer}"
+    #puts "  four in a row: #{four_in_a_row_computer}"
     #puts "  total_score: #{total_score_computer}"
-    puts "\n"
+    #puts "\n"
 
     return [total_score_player, total_score_computer]
   end
