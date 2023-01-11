@@ -14,14 +14,10 @@ class Game
   end
   
   def play 
-    round
-    round
-    round
-    round
-    round
-    round
-    round
-    @board.find_winner
+    loop do
+      round
+      break if !@board.find_winner.nil?
+    end
   end
 
   private
@@ -46,7 +42,6 @@ class Game
         @turn = 1
       end
 
-      @board.find_winner
     end 
 
   end

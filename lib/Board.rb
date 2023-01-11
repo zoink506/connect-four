@@ -59,15 +59,22 @@ class Board
     # check columns
     # check diagonals
     rows_checked = check_rows
-    #p rows_checked
+    rows_checked.each do |row|
+      return 1 if row[0]['4'] > 0
+      return 2 if row[1]['4'] > 0
+    end
 
+    nil
   end
 
   def check_rows
+    rows = []
     @board.each do |row|
       row_check = check_row(row)
-      p row_check
+      rows << row_check
     end
+
+    return rows
   end
 
   def check_row(arr)
@@ -77,7 +84,6 @@ class Board
       { '4' => 0, '3' => 0, '2' => 0 },
       { '4' => 0, '3' => 0, '2' => 0 }
     ]
-    # return_array[coin-1][count.to_s] += 1 if count >= 2 && count <= 4
 
     count = 0
     coin = 0
@@ -91,10 +97,7 @@ class Board
 
         count = 0
         coin = 0
-
       elsif cell != 0
-
-        #return_array[coin-1][count.to_s] += 1 if count >= 2 && count <= 4
 
         if coin == cell
           count += 1
@@ -102,14 +105,12 @@ class Board
           if i == arr.length - 1
             return_array[coin-1][count.to_s] += 1 if count >= 2 && count <= 4
           end
-
         else
           return_array[coin-1][count.to_s] += 1 if count >= 2 && count <= 4
           count = 1
           coin = cell
         end
       end
-
     end
 
     return_array
