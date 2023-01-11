@@ -46,9 +46,11 @@ class Game
       # computers turn to move
       sleep(1)
 
-      random_column = rand(1..7).to_s
-      @board.place_coin(random_column, @turn)
-      @computer.board_evaluation(@board)
+      #random_column = rand(1..7).to_s
+      #@board.place_coin(random_column, @turn)
+      optimal_move = @computer.choose_move(@board)
+      puts "Optimal move: #{optimal_move}"
+      @board.place_coin(optimal_move['column'], @turn)
 
       @turn = 1
     end
